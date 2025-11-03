@@ -1,0 +1,13 @@
+DEBUG=1
+SECRET_KEY=dev-secret
+
+# Database (mesmos valores usados no serviço db do docker-compose)
+POSTGRES_DB=hotel
+POSTGRES_USER=hotel
+POSTGRES_PASSWORD=hotel
+DB_HOST=db
+DB_PORT=5432
+
+# Celery / Redis
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/1
