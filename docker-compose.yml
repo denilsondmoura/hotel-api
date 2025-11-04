@@ -25,6 +25,7 @@ services:
       - .env
     environment:
       - RUN_MIGRATIONS=0
+      - TZ=America/Sao_Paulo
     depends_on:
       - redis
       - db

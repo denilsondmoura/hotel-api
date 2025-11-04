@@ -15,7 +15,6 @@ class QuartoSituacao(models.TextChoices):
 class QuartoMotivoIndisponivel(models.TextChoices):
     MANUTENCAO = "manutencao", "manutencao"
     LIMPEZA_PROFUNDA = "limpeza_profunda", "limpeza_profunda"
-    RESERVADO = "reservado", "reservado"
 
 
 class ReservaSituacao(models.TextChoices):

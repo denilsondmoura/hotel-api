@@ -7,6 +7,7 @@ from .models import Hotel, Quarto, Reserva
 from .serializers import HotelSerializer, QuartoSerializer, ReservaSerializer
 from .enums import QuartoSituacao, ReservaSituacao
 from .states import get_reserva_state
+from .tasks import encaminha_email_confirmacao_reserva_task
 
 
 class IsAdminGroupPermission(IsAuthenticated):
@@ -85,6 +86,8 @@ class ReservaViewSet(viewsets.ModelViewSet):
     http_method_names = ["get", "post", "patch", "delete", "head", "options"]
 
     def perform_create(self, serializer):
+        from .enums import QuartoSituacao
+        
         attrs = serializer.validated_data
 
         data_checkin = attrs.get("data_checkin")
@@ -100,7 +103,6 @@ class ReservaViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError("data_checkout deve ser maior que data_checkin.")
 
         if hasattr(quarto, "situacao") and hasattr(quarto.__class__, "QuartoSituacao"):
-            from .enums import QuartoSituacao
             
             if quarto.situacao != QuartoSituacao.DISPONIVEL:
                 raise serializers.ValidationError("O quarto selecionado não está disponível.")
@@ -127,8 +129,7 @@ class ReservaViewSet(viewsets.ModelViewSet):
             valor_total=valor_calculado
         )
         
-        quarto.situacao = QuartoSituacao.INDISPONIVEL
-        quarto.save(update_fields=['situacao'])
+        encaminha_email_confirmacao_reserva_task.delay(reserva.id)
         
 
     def perform_update(self, serializer):
