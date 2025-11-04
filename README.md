@@ -58,9 +58,9 @@ Após a inicialização dos containers, acesse:
 ### Serviço	URL
 | Serviço          | URL                                                                                |
 | ---------------- | ---------------------------------------------------------------------------------- |
-| 🌐 API Principal | [http://localhost:8000/](http://localhost:8000/)                                   |
-| 📘 Swagger UI    | [http://localhost:8000/api/docs/](http://localhost:8000/api/v1/docs/#/)            |
-| 📗 ReDoc         | [http://localhost:8000/api/docs/redoc/](http://localhost:8000/api/v1/redoc/)       |
+| 🌐 API Principal | [http://localhost:8000/api/v1/](http://localhost:8000/api/v1/)                                   |
+| 📘 Swagger UI    | [http://localhost:8000/api/v1/docs/](http://localhost:8000/api/v1/docs/#/)            |
+| 📗 ReDoc         | [http://localhost:8000/api/v1/docs/redoc/](http://localhost:8000/api/v1/redoc/)       |
 | 🐘 Admin Django  | [http://localhost:8000/admin/](http://localhost:8000/admin/)                       |
 
 ### 👤 Usuários de teste
