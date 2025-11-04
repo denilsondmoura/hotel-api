@@ -13,6 +13,9 @@ fi
 if [ "${RUN_MIGRATIONS}" = "1" ]; then
   echo "Executando migrações..."
   python manage.py migrate --noinput
+
+  echo "Carregando dados iniciais..."
+  python manage.py loaddata core/fixtures/dados.json || echo "Nenhum fixture encontrado."
 fi
 
 exec "$@"
